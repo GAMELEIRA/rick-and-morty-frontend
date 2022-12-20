@@ -30,8 +30,9 @@
               "src/assets"
             ],
             "styles": [
+              "src/reset.scss",
               "src/styles.scss",
-              "src/reset.scss"
+              "src/typography.scss"
             ],
             "scripts": []
           },
@@ -94,8 +95,9 @@
               "src/assets"
             ],
             "styles": [
+              "src/reset.scss",
               "src/styles.scss",
-              "src/reset.scss"
+              "src/typography.scss"
             ],
             "scripts": []
           }
