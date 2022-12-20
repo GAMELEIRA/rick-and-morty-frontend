@@ -1,6 +1,26 @@
-<div *ngFor="let character of characters">
-  <div>
-    {{character.name}}
+<section infiniteScroll [infiniteScrollDistance]="0"
+[infiniteScrollThrottle]="0"  (scrolled)="onScroll()">
+  <div id="list-character" *ngFor="let character of characters">
+    <div class="card">
+      <div class="card-title">
+        <p>{{character.name}}</p>
+      </div>
+      <div>
+        <img class="image" [src]="character.image">
+      </div>
+      <div class="info-top">
+        <p>{{character.id}}</p>
+      </div>
+      <div class="card-info-center">
+        <div class="info-left">
+          <p>{{character.location.name}}</p>
+          <p>{{character.status}}</p>
+        </div>
+        <div class="info-right">
+          <p>{{character.species}}</p>
+          <p>{{character.gender}}</p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
+</section>

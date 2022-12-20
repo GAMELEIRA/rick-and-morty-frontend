@@ -2,6 +2,7 @@ import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Response } from 'src/app/models/Response';
 
 
 @Injectable({
@@ -19,8 +20,8 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
-  public getCharacters(): Observable<any> {
-    return this.http.get(environment.domain.concat(this.uri), this.httpOptions);
+  public getCharacters(page: number = 1): Observable<Response> {
+    return this.http.get<Response>(environment.domain.concat(this.uri).concat(`/?page=${page}`), this.httpOptions);
   }
 
 }

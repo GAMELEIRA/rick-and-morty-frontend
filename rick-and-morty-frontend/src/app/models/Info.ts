@@ -5,5 +5,4 @@ export class Info {
   public pages!: number;
   public next!: string;
   public prev!: null;
-  public results!: Array<Character>
 }
