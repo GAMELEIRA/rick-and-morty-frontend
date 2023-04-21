@@ -1,20 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+<po-page-default p-title="Rick And Morty" >
+  <po-container class="po-lg-12 po-sm-12">
+    <po-widget class="po-lg-12 po-sm-12" (p-click)="directToPage('characters')">
+      <div class="po-font-subtitle po-text-center">Personagens</div>
+    </po-widget>
+    <po-widget class="po-lg-12 po-sm-12" (p-click)="directToPage('episodies')">
+      <div class="po-font-subtitle po-text-center">Episodios</div>
+    </po-widget>
+    <po-widget class="po-lg-12 po-sm-12" (p-click)="directToPage('locations')">
+      <div class="po-font-subtitle po-text-center">Locais</div>
+    </po-widget>
+  </po-container>
+</po-page-default>
