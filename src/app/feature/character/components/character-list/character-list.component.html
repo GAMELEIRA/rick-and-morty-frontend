@@ -1,4 +1,4 @@
-<po-page-list>
+<po-page-list [p-filter]="filter">
   <ion-content>
     <po-container [p-no-border]="true" [p-no-padding]="false" [p-no-shadow]="false">
       <div *ngFor="let character of characters" style="margin-bottom: 8px;">

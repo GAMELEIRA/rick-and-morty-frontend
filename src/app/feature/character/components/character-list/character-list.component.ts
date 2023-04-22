@@ -1,11 +1,7 @@
-import { IResponseRest } from '../../../../shared/interfaces/IResponseRest.interface';
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../../services/character/character.service';
 import { ICharacter } from 'src/app/shared/interfaces/ICharacter.interface';
-import { ILocation } from 'src/app/shared/interfaces/ILocation.interface';
-import { IEpisode } from 'src/app/shared/interfaces/IEpisode.interface';
 import { Router } from '@angular/router';
-import { concat } from 'rxjs';
 
 @Component({
   selector: 'app-character-list',
@@ -19,6 +15,13 @@ export class CharacterListComponent implements OnInit {
   private hasNext: boolean = true;
   public characters: Array<ICharacter> = [];
 
+  public filter = {
+    action: this.requestGetCharacter,
+    placeholder: 'Buscar personagem',
+    advancedAction: this.requestGetCharacter,
+    width: 80
+  }
+
   constructor(private characterService: CharacterService, private router: Router) { }
 
   ngOnInit() {
@@ -31,6 +34,10 @@ export class CharacterListComponent implements OnInit {
 
   public navigateToDetails(id: number): void {
     this.router.navigateByUrl(`details/${id}`);
+  }
+
+  public requestGetCharacter(): void {
+    console.log('OIII');
   }
 
   private requestGetAllCharacters(): void {

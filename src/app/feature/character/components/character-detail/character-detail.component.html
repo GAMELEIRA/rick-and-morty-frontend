@@ -2,16 +2,27 @@
   <po-button p-icon="po-icon po-icon-arrow-left" p-kind="tertiary" p-size="24" (p-click)="backToListOfCharacter()">
   </po-button>
   <po-container [p-no-border]="true" [p-no-padding]="false" [p-no-shadow]="false">
+    <po-widget>
       <div class="po-text-center po-sm-12">
         <img [src]="character.image" alt="Imagem do personagem" height="300px" width="300px">
       </div>
-      <po-info p-label="ID" [p-value]="character.id.toString()"> </po-info>
-      <po-info p-label="Nome" [p-value]="character.name"> </po-info>
-      <po-info p-label="Status" [p-value]="character.status"> </po-info>
-      <po-info p-label="Especies" [p-value]="character.species"> </po-info>
-      <po-info p-label="Sexo" [p-value]="character.gender"> </po-info>
-      <po-info p-label="Origem" [p-value]="character.origin.name" [p-url]="character.origin.url"> </po-info>
-      <po-info p-label="Localização" [p-value]="character.location.name" [p-url]="character.location.url"> </po-info>
-      <po-info p-label="Data criação" [p-value]="character.created"> </po-info>
+      <div class="po-sm-6">
+        <po-info p-label="ID" [p-value]="character.id.toString()"> </po-info>
+        <po-info p-label="Nome" [p-value]="character.name"> </po-info>
+      </div>
+      <div class="po-sm-6">
+        <po-info p-label="Status" [p-value]="character.status"> </po-info>
+        <po-info p-label="Especies" [p-value]="character.species"> </po-info>
+      </div>
+      <div class="po-sm-6">
+        <po-info p-label="Sexo" [p-value]="character.gender"> </po-info>
+        <po-info p-label="Origem" [p-value]="character.origin.name" [p-url]="character.origin.url"> </po-info>
+      </div>
+      <div class="po-sm-6">
+        <po-info p-label="Localização" [p-value]="character.location.name" [p-url]="character.location.url">
+        </po-info>
+        <po-info p-label="Data criação" [p-value]="character.created"> </po-info>
+      </div>
+    </po-widget>
   </po-container>
 </po-page-detail>
