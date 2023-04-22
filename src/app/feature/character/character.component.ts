@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
+
+  public backToHome(): void {
+    this.router.navigateByUrl('home');
+  }
 
 }

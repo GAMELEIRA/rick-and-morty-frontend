@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule } from '@ionic/angular';
 import { CoreModule } from './core/core.module';
 import { FeatureModule } from './feature/feature.module';
-import { PoModule } from '@po-ui/ng-components';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

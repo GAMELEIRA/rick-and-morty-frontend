@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PoModule } from '@po-ui/ng-components';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [],
@@ -9,7 +10,8 @@ import { PoModule } from '@po-ui/ng-components';
     PoModule,
   ],
   exports: [
-    PoModule
+    PoModule,
+    IonicModule
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,31 @@
+<po-page-list>
+  <ion-content>
+    <po-container [p-no-border]="true" [p-no-padding]="false" [p-no-shadow]="false">
+      <div *ngFor="let character of characters" style="margin-bottom: 8px;">
+        <po-widget [p-height]="256" [p-title]="character.name" p-primary-label="Detalhes"
+          (p-primary-action)="navigateToDetails(character.id)">
+          <div>
+            <span class="po-text-center po-sm-12">
+              <img [src]="character.image" alt="Imagem do personagem" height="80px" width="80px">
+            </span>
+            <span class="po-text-left po-sm-4">
+              <p class="po-font-text-bold">ID</p>
+              <div>{{character.id}}</div>
+            </span>
+            <span class="po-text-center  po-sm-4">
+              <p class="po-font-text-bold">Status</p>
+              <div>{{character.status}}</div>
+            </span>
+            <span class="po-text-right  po-sm-4">
+              <p class="po-font-text-bold">Especie</p>
+              <div>{{character.species}}</div>
+            </span>
+          </div>
+        </po-widget>
+      </div>
+    </po-container>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
+</po-page-list>
