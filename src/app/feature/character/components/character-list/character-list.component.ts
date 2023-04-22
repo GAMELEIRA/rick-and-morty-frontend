@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../../services/character/character.service';
 import { ICharacter } from 'src/app/shared/interfaces/ICharacter.interface';
 import { Router } from '@angular/router';
+import { PoPageFilter } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-character-list',
@@ -12,19 +13,18 @@ export class CharacterListComponent implements OnInit {
 
   private actuallyPage: number = 1;
   private lastPage: number = 0;
-  private hasNext: boolean = true;
+  private hasNext: boolean = false;
   public characters: Array<ICharacter> = [];
 
-  public filter = {
-    action: this.requestGetCharacter,
-    placeholder: 'Buscar personagem',
-    advancedAction: this.requestGetCharacter,
-    width: 80
-  }
+  public readonly filter: PoPageFilter = {
+    placeholder: 'Nome, Status, Especie, Tipo, Sexo',
+    action: this.requestGetCharactersBySearch.bind(this),
+    advancedAction: this.requestGetCharactersBySearch.bind(this)
+  };
 
   constructor(private characterService: CharacterService, private router: Router) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.requestGetAllCharacters();
   }
 
@@ -36,17 +36,66 @@ export class CharacterListComponent implements OnInit {
     this.router.navigateByUrl(`details/${id}`);
   }
 
-  public requestGetCharacter(): void {
-    console.log('OIII');
+  public refreshPage(event?: any): void {
+    this.cleanPage();
+    this.requestGetAllCharacters(event);
   }
 
-  private requestGetAllCharacters(): void {
+  public requestGetCharactersBySearch(search: string): void {
+    if (this.searchIsFill(search)) {
+      this.characterService.getCharacterByName(search).subscribe((res: any) => {
+        this.updateListBySearch(res);
+      });
+      this.characterService.getCharacterByStatus(search).subscribe((res: any) => {
+        this.updateListBySearch(res);
+      });
+      this.characterService.getCharacterBySpecies(search).subscribe((res: any) => {
+        this.updateListBySearch(res);
+      });
+      this.characterService.getCharacterByType(search).subscribe((res: any) => {
+        this.updateListBySearch(res);
+      });
+      this.characterService.getCharacterByGender(search).subscribe((res: any) => {
+        this.updateListBySearch(res);
+      });
+    } else {
+      this.requestGetAllCharacters();
+    }
+  }
+
+  private updateListBySearch(response: any) {
+    this.characters = this.characters.concat(response.results);
+  }
+
+  private cleanPage(): void {
+    this.characters = [];
+    this.hasNext = false;
+    this.actuallyPage = 1;
+  }
+
+  private searchIsFill(search: string): boolean {
+    if (search.trim().length <= 0) {
+      this.cleanPage();
+      return false;
+    } else {
+      this.cleanPage();
+      return true;
+    }
+  }
+
+  private requestGetAllCharacters(event?: any): void {
     this.characterService.getAllCharacters(this.actuallyPage).subscribe((res: any) => {
       this.lastPage = res.info.pages;
       this.characters = this.characters.concat(res.results);
-      console.log(this.characters);
       this.updateHasNext();
+      this.closedEvent(event);
     });
+  }
+
+  private closedEvent(event?: any | undefined): void {
+    if (event) {
+      event.target.complete();
+    }
   }
 
   private updateHasNext(): void {
@@ -64,7 +113,7 @@ export class CharacterListComponent implements OnInit {
     if (this.hasNext) {
       this.requestGetAllCharacters();
     }
-    event.target.complete();
+    this.closedEvent(event);
   }
 
 }

@@ -16,11 +16,31 @@ export class CharacterService {
   constructor(private httpService: HttpService) { }
 
   public getAllCharacters(page: number): Observable<ICharacter | ILocation | IEpisode | IResponseRest> {
-    return this.httpService.get(this.RESOURCE, {page});
+    return this.httpService.get(this.RESOURCE, { page });
   }
 
   public getCharacterById(id: string | null): Observable<ICharacter | ILocation | IEpisode | IResponseRest> {
     return this.httpService.get(`${this.RESOURCE}/${id}`);
+  }
+
+  public getCharacterByName(name: string): Observable<ICharacter | ILocation | IEpisode | IResponseRest> {
+    return this.httpService.get(this.RESOURCE, { name });
+  }
+
+  public getCharacterByStatus(status: string): Observable<ICharacter | ILocation | IEpisode | IResponseRest> {
+    return this.httpService.get(this.RESOURCE, { status });
+  }
+
+  public getCharacterBySpecies(species: string): Observable<ICharacter | ILocation | IEpisode | IResponseRest> {
+    return this.httpService.get(this.RESOURCE, { species });
+  }
+
+  public getCharacterByType(type: string): Observable<ICharacter | ILocation | IEpisode | IResponseRest> {
+    return this.httpService.get(this.RESOURCE, { type });
+  }
+
+  public getCharacterByGender(gender: string): Observable<ICharacter | ILocation | IEpisode | IResponseRest> {
+    return this.httpService.get(this.RESOURCE, { gender });
   }
 
 }
