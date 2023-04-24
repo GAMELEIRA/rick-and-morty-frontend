@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../../services/character/character.service';
-import { ICharacter } from 'src/app/shared/interfaces/ICharacter.interface';
 import { Router } from '@angular/router';
 import { PoPageFilter } from '@po-ui/ng-components';
+import { Character } from 'src/app/shared/models/Character.model';
 
 @Component({
   selector: 'app-character-list',
@@ -14,7 +14,7 @@ export class CharacterListComponent implements OnInit {
   private actuallyPage: number = 1;
   private lastPage: number = 0;
   private hasNext: boolean = false;
-  public characters: Array<ICharacter> = [];
+  public characters: Array<Character> = [];
 
   public readonly filter: PoPageFilter = {
     placeholder: 'Nome, Status, Especie, Tipo, Sexo',
@@ -32,8 +32,8 @@ export class CharacterListComponent implements OnInit {
     this.router.navigateByUrl('home');
   }
 
-  public navigateToDetails(id: number): void {
-    this.router.navigateByUrl(`details/${id}`);
+  public goToDetails(id: number): void {
+    this.router.navigateByUrl(`characters/details/${id}`);
   }
 
   public refreshPage(event?: any): void {

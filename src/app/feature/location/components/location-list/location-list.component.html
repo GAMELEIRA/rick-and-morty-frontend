@@ -1,0 +1,15 @@
+<po-page-list title="Locais">
+  <po-container>
+    <po-widget *ngFor="let location of locations" (p-click)="goToDetails(location.id)">
+      <div class="po-sm-2">
+        <po-info p-label="ID" [p-value]="location.id.toString()"> </po-info>
+      </div>
+      <div class="po-sm-6">
+        <po-info p-label="Nome" [p-value]="location.name"> </po-info>
+      </div>
+      <div class="po-sm-4">
+        <po-info p-label="Dimensão" [p-value]="location.dimension"> </po-info>
+      </div>
+    </po-widget>
+  </po-container>
+</po-page-list>

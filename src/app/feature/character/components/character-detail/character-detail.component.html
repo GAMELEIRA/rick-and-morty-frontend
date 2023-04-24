@@ -16,13 +16,35 @@
       </div>
       <div class="po-sm-6">
         <po-info p-label="Sexo" [p-value]="character.gender"> </po-info>
-        <po-info p-label="Origem" [p-value]="character.origin.name" [p-url]="character.origin.url"> </po-info>
+        <po-info *ngIf="character.origin.name !== 'unknown'" style="text-decoration: underline;" (click)="modalOrigin.open()" p-label="Origem" [p-value]="character.origin.name"> </po-info>
+        <po-info *ngIf="character.origin.name === 'unknown'" p-label="Origem" [p-value]="character.origin.name"> </po-info>
       </div>
       <div class="po-sm-6">
-        <po-info p-label="Localização" [p-value]="character.location.name" [p-url]="character.location.url">
+        <po-info style="text-decoration: underline;" (click)="modalLocation.open()" p-label="Localização"
+          [p-value]="character.location.name">
         </po-info>
-        <po-info p-label="Data criação" [p-value]="character.created"> </po-info>
+        <po-info p-label="Data criação" [p-value]="character.created | dateBr"> </po-info>
       </div>
     </po-widget>
   </po-container>
 </po-page-detail>
+<po-modal #modalLocation [p-click-out]="true" [p-hide-close]="true" p-icon="po-icon po-icon-world" p-size="auto"
+  p-title="Localização">
+  <div>
+    <po-info class="po-sm-6" p-label="ID" [p-value]="location.id.toString()"></po-info>
+    <po-info class="po-sm-6" p-label="Name" [p-value]="location.name"></po-info>
+    <po-info class="po-sm-6" p-label="Tipo" [p-value]="location.type"></po-info>
+    <po-info class="po-sm-6" p-label="Dimensão" [p-value]="location.dimension"></po-info>
+    <po-info class="po-sm-12" p-label="Criação" [p-value]="location.created | dateBr"></po-info>
+  </div>
+</po-modal>
+<po-modal #modalOrigin [p-click-out]="true" [p-hide-close]="true" p-icon="po-icon po-icon-world" p-size="auto"
+  p-title="Localização">
+  <div>
+    <po-info class="po-sm-6" p-label="ID" [p-value]="origin.id.toString()"></po-info>
+    <po-info class="po-sm-6" p-label="Name" [p-value]="origin.name"></po-info>
+    <po-info class="po-sm-6" p-label="Tipo" [p-value]="origin.type"></po-info>
+    <po-info class="po-sm-6" p-label="Dimensão" [p-value]="origin.dimension"></po-info>
+    <po-info class="po-sm-12" p-label="Criação" [p-value]="origin.created | dateBr"></po-info>
+  </div>
+</po-modal>
